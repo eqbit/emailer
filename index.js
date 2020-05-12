@@ -12,7 +12,7 @@ app.use(cors());
 var sendEmail = gmailSend({
   user: credentials.user,
   pass: credentials.password,
-  to: 'eqbit@yandex.ru',
+  to: 'req@omnio.site',
   subject: 'Новый запрос приложения',
 });
 
