@@ -7,11 +7,10 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "eqbit",
   "license": "ISC",
   "dependencies": {
-    "gmail-send": "^1.8.10",
-    "nodemailer": "^6.4.6",
-    "sendmail": "^1.6.1"
+    "express": "^4.17.1",
+    "gmail-send": "^1.8.10"
   }
 }

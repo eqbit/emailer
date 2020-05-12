@@ -1,24 +1,35 @@
-const nodemailer = require('nodemailer');
+const express = require("express");
+const gmailSend = require('gmail-send');
+const credentials = require('./config');
 
-const transport = nodemailer.createTransport({
-  host: 'smtp.mailtrap.io',
-  port: 2525,
-  auth: {
-    user: '69caaeec9d9418',
-    pass: '08185ce6c96872'
-  }
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const sendEmail = gmailSend({
+  user: credentials.user,
+  pass: credentials.password,
+  to: 'eqbit@yandex.ru',
+  subject: 'Новый запрос приложения',
 });
 
-const message = {
-  from: 'eqbits@gmail.com', // Sender address
-  to: 'to@email.com',         // List of recipients
-  subject: 'Design Your Model S | Tesla', // Subject line
-  text: 'Have the most fun you can in a car. Get your Tesla today!' // Plain text body
-};
-transport.sendMail(message, function(err, info) {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log(info);
-  }
+app.listen(3002, () => {
+  console.log("Server running on port 3002");
+});
+
+app.post('/request', (req, res) => {
+  
+  const html = `
+  Запрос приложения с лендинга Omnio<br>
+  Имя: ${req.body.name} <br>
+  Телефон: ${req.body.phone}`;
+  
+  sendEmail({ html }, (error) => {
+    if (error) {
+      return res.send({ error });
+    }
+  });
+  
+  return res.send({ message: 'success' });
 });
