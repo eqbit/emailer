@@ -23,7 +23,7 @@ app.post('/request', (req, res) => {
   const html = `
   Запрос приложения с лендинга Omnio<br>
   Имя: ${req.body.name} <br>
-  Телефон: ${req.body.phone}`;
+  Email: ${req.body.email}`;
   
   sendEmail({ html }, (error) => {
     if (error) {
