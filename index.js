@@ -24,7 +24,7 @@ app.post('/request', function (req, res) {
   
   var html = 'Запрос приложения с лендинга Omnio <br>Имя: ' + req.body.name + ' <br>Email: ' + req.body.email;
   
-  sendEmail({ html }, function (error) {
+  sendEmail({ html: html }, function (error) {
     if (error) {
       return res.send({ error });
     }
