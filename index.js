@@ -1,11 +1,13 @@
 const express = require("express");
 const gmailSend = require('gmail-send');
+var cors = require('cors');
 const credentials = require('./config');
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 const sendEmail = gmailSend({
   user: credentials.user,
