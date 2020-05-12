@@ -26,7 +26,7 @@ app.post('/request', function (req, res) {
   
   sendEmail({ html: html }, function (error) {
     if (error) {
-      return res.send({ error });
+      return res.send({ error: error });
     }
   });
   
