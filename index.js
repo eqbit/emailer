@@ -44,3 +44,7 @@ app.post('/request', function (req, res) {
   
   return res.send({ message: 'success' });
 });
+
+app.get('/request', (req, res) => {
+  res.send('The endpoint uses POST method');
+});
