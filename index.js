@@ -25,7 +25,11 @@ app.post('/request', function (req, res) {
   
   const { name, email } = req.body;
   
-  LogRequests.insertNewRequest({ name, email });
+  LogRequests.insertNewRequest({
+    name,
+    email,
+    ip: req.connection.remoteAddress.replace('::ffff:', '')
+  });
   
   const html = `
     Запрос приложения с лендинга Omnio <br>

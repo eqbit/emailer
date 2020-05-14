@@ -1,22 +1,22 @@
-const sql = require('slonik').sql;
 const { pool } = require('./dbconfig');
 
 const LogRequests = {
-  async insertNewRequest({ name, email }) {
+  async insertNewRequest({ name, email, ip }) {
     const values = [
       name,
-      email
+      email,
+      ip,
+      new Date()
     ];
     
     const query = `
     INSERT INTO requests
-    (name, email)
+    (name, email, ip, date)
     VALUES
-    ($1, $2)`;
+    ($1, $2, $3, $4)`;
   
     try {
       await pool.query(query, values);
-      console.log('success');
     } catch (e) {
       console.error(e.message)
     }
